@@ -7,3 +7,11 @@
 
 
 # How many iterations does it take to converge?
+
+def estimate_pi(k):
+	while True: 
+
+		return result 
+		if result == math.pi: 
+			break
+		
