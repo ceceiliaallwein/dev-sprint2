@@ -1,0 +1,29 @@
+<!--inherits html via jinja2-->
+{% extends "base.html" %}
+
+<!--adds body content to parent file-->
+{% block body %}
+	<h2>Music</h2>
+	Excerpts from <i>Kafka-Fragmente</i> by Gyorgy Kurtag
+	<audio controls="controls" autoplay="autoplay"> 
+		<src="/static/music/Staunend.m4a" type="audio/m4a">
+		<src="/static/music/Leoparden.m4a" type="audio/m4a">
+		<src="/static/music/Wenn.m4a" type="audio/m4a">
+		<src="/static/music/Szene.m4a" type="audio/m4a">
+	</audio>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			Results: 
+			<pre>
+				{% for messages in messages %}
+{{ message }}
+				{% endfor %}
+			</pre>
+		{% endif %}
+	{% endwith %}
+{% endblock %}
+
+{% block nav %} 
+	<li><a href="{{url_for('main')}}">Back</a></li>
+	<li><a href="{{url_for('main')}}">Remote</a></li>
+{% endblock %}

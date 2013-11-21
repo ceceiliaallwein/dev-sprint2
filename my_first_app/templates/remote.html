@@ -21,6 +21,8 @@
 		{% endif %}
 	{% endwith %}
 {% endblock %}
-{% blocknav %}
-<li><a href="{{url_for('index')}}">back</a><li>
+
+{% block nav %} 
+	<li><a href="{{url_for('main')}}">Back</a></li>
+	<li><a href="{{url_for('music')}}">Music</a></li>
 {% endblock %}

@@ -1,2 +1,12 @@
 # Please put answers for the week2 stand alone questions here
-# Name:
+# Name: Ceceilia Allwein 
+
+Idea 1: Perform simple calculations on biostats that indicate quality of life, e.g. input age, output the number of hours you'll sit in stop lights the rest of your life. 
+
+Idea 2: Magic 8 ball 
+
+Idea 3: Online quiz, displays password to protected content if score is achieved. 
+
+Idea 4: Guess a secret word. If the input contains the secret word, flash message to confirm. Autoplay obligatory vintage Match Game video. 
+
+Idea 5: Mad libs. Duh.

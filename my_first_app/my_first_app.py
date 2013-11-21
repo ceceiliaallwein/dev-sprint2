@@ -20,13 +20,14 @@ class Main(flask.views.MethodView):
 			# pops the username off the session
 			# what's the second arguement? password? built-in?  
 			flask.session.pop('username', None)
-			return flask.redirect(flask.url_for('index'))
+			return flask.redirect(flask.url_for('main'))
 		required = ['username','password']
 		for r in required:
 			if r not in flask.request.form:
+				# what is the {0}?
 				flask.flash("Error: {0} is required.".format(r))
 				# preferred method for sending user to a different path
-				return flask.redirect(flask.url_for('index'))
+				return flask.redirect(flask.url_for('main'))
 		
 		username = flask.request.form['username']
 		password = flask.request.form['password']
@@ -38,7 +39,7 @@ class Main(flask.views.MethodView):
 			flask.session['username'] = username
 		else:
 			flask.flash("Username doesn't exist or incorrect password")
-		return flask.redirect(flask.url_for('index'))
+		return flask.redirect(flask.url_for('main'))
 
  
 
@@ -51,7 +52,7 @@ def login_required(method):
 			return method(*args, **kwargs)
 		else:
 			flask.flash("A login is required to see the page!")
-			return flask.redirect(flask.url_for('index'))
+			return flask.redirect(flask.url_for('main'))
 	return wrapper
 
 
@@ -73,14 +74,23 @@ class Remote(flask.views.MethodView):
 		flask.flash(result)
 		return flask.redirect(flask.url_for('remote'))
 
-		#alternate method? 
+		#alternate method?
 		#return self.get()
+
+class Music(flask.views.MethodView):
+	@login_required
+	def get(self):
+		return flask.render_template('music.html')
+
+
 
 # had View.as_view instead of Main.as_view for a while
 # must specify the class as a view 
 # clarify what this is actually doing? 
 app.add_url_rule('/',view_func=Main.as_view('main'),methods=('GET', 'POST'))
-app.add_url_rule('/Remote',view_func=Remote.as_view('remote'),methods=('GET', 'POST'))
+app.add_url_rule('/Remote/',view_func=Remote.as_view('remote'),methods=('GET', 'POST'))
+app.add_url_rule('/Music/',view_func=Music.as_view('music'),methods=('GET'))
+
 
 app.debug = True
 app.run()
